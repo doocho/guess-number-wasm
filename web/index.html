@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Number (Rust + WASM)</title>
+    <style>
+      :root { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; color-scheme: light dark; }
+      body { margin: 0; display: grid; place-items: center; min-height: 100svh; padding: 16px; }
+      .card { width: min(560px, 100%); border: 1px solid #ccc; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); background: #fff; color: #111; }
+      @media (prefers-color-scheme: dark) { .card { background: #111; color: #f3f3f3; border-color: #333; } }
+      .row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+      input[type="number"] { padding: 8px 10px; border-radius: 8px; border: 1px solid #aaa; width: 120px; }
+      button { padding: 8px 14px; border-radius: 8px; border: 1px solid #444; background: #2d6cdf; color: white; cursor: pointer; }
+      button[disabled] { opacity: 0.5; cursor: not-allowed; }
+      .muted { opacity: 0.7; font-size: 0.9rem; }
+      #feedback { min-height: 1.5em; font-weight: 600; }
+      .success { color: #0d7c3a; }
+      .error { color: #a22; }
+      label { display: inline-flex; gap: 8px; align-items: center; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Guess the Number</h1>
+      <p class="muted">Pick a number between 1 and the max. WASM holds the secret; the browser sends guesses.</p>
+
+      <div class="row">
+        <label>Max:
+          <input id="max" type="number" min="1" step="1" value="100" />
+        </label>
+        <button id="apply-range">Apply Range</button>
+      </div>
+
+      <div class="row">
+        <label>Guess:
+          <input id="guess" type="number" min="1" step="1" />
+        </label>
+        <button id="submit">Guess</button>
+        <button id="restart" class="muted" title="Restart with current max">Restart</button>
+      </div>
+
+      <div id="feedback" aria-live="polite"></div>
+      <p class="muted">Attempts: <span id="attempts">0</span></p>
+    </div>
+
+    <script type="module" src="/web/main.js"></script>
+  </body>
+  </html>
+
+
